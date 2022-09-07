@@ -1,9 +1,12 @@
 package main
 
 import (
-    "log"
+	"fmt"
+	"log"
+
+	"example.com/newmodel"
 	"example.com/routes"
-    "github.com/gofiber/fiber/v2"
+	"github.com/gofiber/fiber/v2"
 )
 
 
@@ -41,7 +44,9 @@ func Process(c *fiber.Ctx) error {
 func main() {
     app := fiber.New()
 	routes.Register(app)
-    app.Get("/", func (c *fiber.Ctx) error {
+	string1:=newmodel.Note()
+	fmt.Println(string1)
+	app.Get("/", func (c *fiber.Ctx) error {
         return c.SendString("Hello, World!")
     })
 	app.Get("/api/posts", Process)
