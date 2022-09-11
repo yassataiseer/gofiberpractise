@@ -1,9 +1,12 @@
 package main
 
+
+
 import (
-    "log"
-	"lib"
-    "github.com/gofiber/fiber/v2"
+	"log"
+	"example.com/handlers"
+
+	"github.com/gofiber/fiber/v2"
 )
 
 
@@ -40,36 +43,11 @@ func Process(c *fiber.Ctx) error {
 }
 func main() {
     app := fiber.New()
-	L.Register(app)
-    app.Get("/", func (c *fiber.Ctx) error {
+
+	handlers.Register(app)
+	app.Get("/", func (c *fiber.Ctx) error {
         return c.SendString("Hello, World!")
     })
 	app.Get("/api/posts", Process)
     log.Fatal(app.Listen(":3000"))
 }
-
-
-
-scnd page
-
-package lib 
-
-import (
-    "github.com/gofiber/fiber/v2"
-)
-
-
-
-func Admin(c *fiber.Ctx) error {
-
-	return c.JSON(&fiber.Map{
-		"success": true,
-		"ADMIN":   "LOGGED IN",
-	})
-}
-func Register(app *fiber.App) {
-  app.Get("/admin",  Admin)
-
-}
-
-

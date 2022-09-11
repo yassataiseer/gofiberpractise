@@ -1,11 +1,9 @@
-package routes
+package handlers
 
 import (
-
-
 	"github.com/gofiber/fiber/v2"
+	"example.com/logic"
 )
-
 
 
 func Admin(c *fiber.Ctx) error {
@@ -16,6 +14,7 @@ func Admin(c *fiber.Ctx) error {
 	})
 }
 func Register(app *fiber.App) {
-  app.Get("/admin",  Admin)
+  app.Get("/admin",  logic.AdminTest)
 
 }
+
