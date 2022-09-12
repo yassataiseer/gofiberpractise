@@ -5,7 +5,7 @@ package main
 import (
 	"log"
 	"example.com/handlers"
-
+	"example.com/config"
 	"github.com/gofiber/fiber/v2"
 )
 
@@ -43,7 +43,8 @@ func Process(c *fiber.Ctx) error {
 }
 func main() {
     app := fiber.New()
-
+    config.Connect()
+	
 	handlers.Register(app)
 	app.Get("/", func (c *fiber.Ctx) error {
         return c.SendString("Hello, World!")
