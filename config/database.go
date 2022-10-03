@@ -21,7 +21,26 @@ func Connect() error {
         panic(err)
     }
 
-    Database.AutoMigrate(&models.Notes{})
+    Database.AutoMigrate(&models.Notes{},&models.User{})
+
+    return nil
+}
+func AddUser( Username, Password string ) error {
+    var err error
+
+    Database, err = gorm.Open(mysql.Open(DATABASE_URI), &gorm.Config{
+        SkipDefaultTransaction: true,
+        PrepareStmt:            true,
+    })
+
+    if err != nil {
+        panic(err)
+    }
+    User := models.User{
+        Username:   Username,
+        Passsword: Password,
+    }
+    Database.Create(&User) 
 
     return nil
 }

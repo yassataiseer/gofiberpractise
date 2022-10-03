@@ -15,6 +15,6 @@ func Admin(c *fiber.Ctx) error {
 }
 func Register(app *fiber.App) {
   app.Get("/admin",  logic.AdminTest)
-
+  app.Get("/AddUser/:Username/:Password", logic.AddAUser)
 }
 

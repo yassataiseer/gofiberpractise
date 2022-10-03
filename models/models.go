@@ -8,5 +8,12 @@ type Notes struct {
 		Title string
 		Text string
 		Id uint
-		User string
+		User string `gorm:"primaryKey;autoIncrement:true"`
+}
+
+type User struct {
+	gorm.Model
+
+	Username string
+	Passsword string
 }
