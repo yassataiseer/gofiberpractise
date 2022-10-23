@@ -14,6 +14,6 @@ type Notes struct {
 type User struct {
 	gorm.Model
 
-	Username string
+	Username string `gorm:"primaryKey"`
 	Passsword string
 }

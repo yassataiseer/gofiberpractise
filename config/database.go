@@ -4,6 +4,7 @@ import (
     "example.com/models"
     "gorm.io/driver/mysql"
     "gorm.io/gorm"
+    "log"
 )
 
 var Database *gorm.DB
@@ -23,6 +24,12 @@ func Connect() error {
 
     Database.AutoMigrate(&models.Notes{},&models.User{})
 
+    err1 := Database.Migrator().DropColumn(&models.User{}, "id")
+    if err1 != nil {
+        // Do whatever you want to do!
+        log.Print("ERROR: We expect the description column to be  drop-able")
+    }    
+    
     return nil
 }
 func AddUser( Username, Password string ) error {
